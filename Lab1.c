@@ -22,45 +22,39 @@
 //      position in str where the substring starts, or
 //      -1, if the substring was not found in str
 
-int find(char *substr, char *str);
-int find (char substr, char str){
-  int pos = 0;
-  char subfind = substring;
-  char search = str;
+int find(char *substr, char *str){
 
-  while(strlen(search) > 0){
-    char test = search[0,1];
-    if (test == subfind) {
-      /* code */
-    } else {
-      pos = -1;
+  //return 0;
+
+  for (int i = 0; i < strlen(str); i++) {
+    if(*substr == *str) {
+      for (int j = 0; j < strlen(substr); j++) {
+        if ((*(substr+1))==(*(str+1))) {
+          return i;
+        }
+      }
     }
-    return pos;
   }
-
-  return pos;
+  return -1;
 }
+
 // function replace
 // replace part of a string by another string
 // parameters:
 //      str: the string to be modified
 //      pos: the index in str where the modified string is to start
 //      newstr: the substring to be used to modify str
-void replace(char *str, int pos, char *substr);
-void replace(char str, int pos, char newstr){
-    char sub = substr;
-    char str = str;
-    char newstr =newstr;
-    int pos = pos;
+void replace(char *str, int pos, char *substr){
 
-    if (/* condition */) {
-      /* code */
-    } else {
-      /* code */
-    }
-
+          (*str) = substr[pos];
+          (*(str+1))  = substr[pos+1];
 
 }
+// void replace(char str, int pos, char substr){
+//   printf("%d\n", str);
+//   printf("%d\n", pos);
+//   printf("%d\n", substr);
+// }
 
 
 int main (int argc, char *argv[]) {
