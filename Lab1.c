@@ -3,7 +3,7 @@
  * CSCI 247, Lab exercise 1, Summer, 2017
  *
  * David Bover, June, 2017
- *
+ * Jessie Manson, Oct, 2017
  */
 
 
@@ -23,20 +23,19 @@
 //      -1, if the substring was not found in str
 
 int find(char *substr, char *str){
-
-  //return 0;
-
   for (int i = 0; i < strlen(str); i++) {
-    if(*substr == *str) {
-      for (int j = 0; j < strlen(substr); j++) {
-        if ((*(substr+1))==(*(str+1))) {
-          return i;
+      if(*substr == str[i]) {
+        for (int j = 0; j < strlen(substr); j++) {
+          if ((*(substr+1))==((str[i+1]))) {
+            return i;
+          }
         }
       }
     }
-  }
   return -1;
 }
+
+
 
 // function replace
 // replace part of a string by another string
@@ -45,17 +44,10 @@ int find(char *substr, char *str){
 //      pos: the index in str where the modified string is to start
 //      newstr: the substring to be used to modify str
 void replace(char *str, int pos, char *substr){
-
-          (*str) = substr[pos];
-          (*(str+1))  = substr[pos+1];
+    (str[pos]) = substr[0];
+    ((str[pos+1])) = substr[1];
 
 }
-// void replace(char str, int pos, char substr){
-//   printf("%d\n", str);
-//   printf("%d\n", pos);
-//   printf("%d\n", substr);
-// }
-
 
 int main (int argc, char *argv[]) {
 
