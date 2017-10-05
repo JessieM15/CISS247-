@@ -24,18 +24,12 @@
 
 int find(char *substr, char *str){
   for (int i = 0; i < strlen(str); i++) {
-      if(*substr == str[i]) {
-        for (int j = 0; j < strlen(substr); j++) {
-          if ((*(substr+1))==((str[i+1]))) {
-            return i;
-          }
-        }
+      if(*substr == str[i] && (*(substr+1))==((str[i+1]))) {
+        return i;
       }
     }
   return -1;
 }
-
-
 
 // function replace
 // replace part of a string by another string
