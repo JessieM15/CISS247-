@@ -86,7 +86,22 @@ int digitValue(char digit, int base) {
 // example:
 //      toDecimal(16, "2E") returns 46
 
-int toDecimal(int base, char *number);
+int toDecimal(int base, char *number){
+
+  int i = 0;
+  int numberToReturn;
+  //char digit = 'a';
+
+  while (number != '\0') {
+    //digit = number[i];
+    i++; //length
+    printf("%d ", i);
+  }
+  for(int j = i-1; j > 0; j--){
+     numberToReturn =  digitValue(number[j],base);
+  }
+  return  numberToReturn;
+}
 
 
 // function fromDecimal()
@@ -102,7 +117,9 @@ int toDecimal(int base, char *number);
 //      fromDecimal(16, 46, text);
 //      text contains the string "2E"
 
-char *fromDecimal(int base, int decimal, char *number);
+char *fromDecimal(int base, int decimal, char *number){
+    return number;
+}
 
 // function main()
 // expects command-line arguments: base, number1, number2
@@ -116,7 +133,9 @@ int main(int count, char *word[]) {
     }
 
     // get the number base and check for range 2 to 36
+    printf("%s\n", word[1]);
     int base = toDecimal(DECIMAL, word[1]);
+    printf("%d\n", base);
 
     if (base < 2 || base > MAX_BASE) {
         printf("Usage: ./Lab2 base num1 num2\n");
