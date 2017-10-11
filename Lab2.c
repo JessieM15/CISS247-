@@ -86,23 +86,58 @@ int digitValue(char digit, int base) {
 // example:
 //      toDecimal(16, "2E") returns 46
 
+//power function
+int powFunc(int base, int exponent, int num){
+  int output = num;
+  printf(" output %d base %d num %d exponent %d \n ", output,base, num, exponent );
+  for (int i = 0; i < exponent; i++) {
+  //  printf(" output 1 %d \n ", output );
+    output *= base;
+    printf(" output %d base %d num %d exponent %d \n ", output,base, num, exponent );
+  }
+  return output;
+}
+
 int toDecimal(int base, char *number){
 
-  int i = 0;
-  int numberToReturn;
-  //char digit = 'a';
-
-  while (number != '\0') {
-    //digit = number[i];
-    i++; //length
-    printf("%d ", i);
+  int len = 0;
+  int numberToReturn = 0;
+  int num = 0;
+  //printf("%d\n",**number);
+  while (number[len] != '\0') {
+    //length function
+    len++; //length
+    printf("len %d \n", len);
   }
-  for(int j = i-1; j > 0; j--){
-     numberToReturn =  digitValue(number[j],base);
+  int k =0;
+  for(int exponent = len-1; exponent >= 0; exponent--){
+  //  for (int k = 0; k < exponent; k++) { // k is to reference number eg num[k]
+      num = digitValue(number[k],base);
+      //printf(" num %d \n", num );
+      numberToReturn += powFunc(base, exponent, num);
+      printf(" num %d \n", numberToReturn );
+      k++;
+      //printf(" numberToReturn %d \n", num );
+  //  }
+    // numberToReturn +=  digitValue(number[j],base);
   }
+  printf(" numberToReturn %d \n", numberToReturn);
   return  numberToReturn;
 }
 
+
+//opposite of powFunc to work backwards  
+char divFunc(int base, int decimal, int exponent){
+  char output = decimal;
+  //printf(" output %d base %d num %d exponent %d \n ", output,base, num, exponent );
+  for (int i = 0; i < exponent; i++) {
+  //  printf(" output 1 %d \n ", output );
+    output /= base;
+    printf(" output %d base %d num %d exponent %d \n ", output,base, num, exponent );
+  }
+  return output;
+
+}
 
 // function fromDecimal()
 // returns a string as the result of converting a decimal number to a specified base
@@ -118,7 +153,18 @@ int toDecimal(int base, char *number){
 //      text contains the string "2E"
 
 char *fromDecimal(int base, int decimal, char *number){
-    return number;
+    char finalNum = 0;
+    while (decimal[len] != '\0') {
+      //length function
+      len++; //length
+      printf("len %d \n", len);
+    }
+    for (int i = len; i < len; i++) {
+
+      num = digitChar(number[k],base);
+    }
+
+    return finalSum;
 }
 
 // function main()
@@ -133,9 +179,10 @@ int main(int count, char *word[]) {
     }
 
     // get the number base and check for range 2 to 36
-    printf("%s\n", word[1]);
+    //printf("Word[1] %s\n", word[1]);
+
     int base = toDecimal(DECIMAL, word[1]);
-    printf("%d\n", base);
+    printf("Base %d\n", base);
 
     if (base < 2 || base > MAX_BASE) {
         printf("Usage: ./Lab2 base num1 num2\n");
