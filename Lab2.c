@@ -89,11 +89,11 @@ int digitValue(char digit, int base) {
 //power function
 int powFunc(int base, int exponent, int num){
   int output = num;
-  printf(" output %d base %d num %d exponent %d \n ", output,base, num, exponent );
+  //printf(" output %d base %d num %d exponent %d \n ", output,base, num, exponent );
   for (int i = 0; i < exponent; i++) {
   //  printf(" output 1 %d \n ", output );
     output *= base;
-    printf(" output %d base %d num %d exponent %d \n ", output,base, num, exponent );
+    //printf(" output %d base %d num %d exponent %d \n ", output,base, num, exponent );
   }
   return output;
 }
@@ -103,11 +103,11 @@ int toDecimal(int base, char *number){
   int len = 0;
   int numberToReturn = 0;
   int num = 0;
-  //printf("%d\n",**number);
+
   while (number[len] != '\0') {
     //length function
     len++; //length
-    printf("len %d \n", len);
+    //printf("len %d \n", len);
   }
   int k =0;
   for(int exponent = len-1; exponent >= 0; exponent--){
@@ -115,25 +115,24 @@ int toDecimal(int base, char *number){
       num = digitValue(number[k],base);
       //printf(" num %d \n", num );
       numberToReturn += powFunc(base, exponent, num);
-      printf(" num %d \n", numberToReturn );
+      //printf(" num %d \n", numberToReturn );
       k++;
       //printf(" numberToReturn %d \n", num );
   //  }
     // numberToReturn +=  digitValue(number[j],base);
   }
-  printf(" numberToReturn %d \n", numberToReturn);
+  //printf(" numberToReturn %d \n", numberToReturn);
   return  numberToReturn;
 }
 
 
-//opposite of powFunc to work backwards  
+//opposite of powFunc to work backwards
 char divFunc(int base, int decimal, int exponent){
   char output = decimal;
   //printf(" output %d base %d num %d exponent %d \n ", output,base, num, exponent );
   for (int i = 0; i < exponent; i++) {
-  //  printf(" output 1 %d \n ", output );
     output /= base;
-    printf(" output %d base %d num %d exponent %d \n ", output,base, num, exponent );
+    printf(" output %d base %d exponent %d \n ", output,base,exponent );
   }
   return output;
 
@@ -153,18 +152,40 @@ char divFunc(int base, int decimal, int exponent){
 //      text contains the string "2E"
 
 char *fromDecimal(int base, int decimal, char *number){
-    char finalNum = 0;
-    while (decimal[len] != '\0') {
+    //char *finalNum;
+  //  char finalNum = *number;
+    int numberDiv = 0;
+    int len = 0;
+    int num = 0;
+    char arrDec[WIDTH];
+    int dlen = decimal;
+    number[2]= '\0';
+
+    while (dlen != 0) {
       //length function
+      arrDec [len] = (char) (dlen%base); // emerson line 136.
+      dlen /= base;
+      //arrDec [len] = (char)dlen;
+      //printf("%s\n",*arrDec );
       len++; //length
-      printf("len %d \n", len);
+      //printf("len %d \n", len);
     }
-    for (int i = len; i < len; i++) {
+    //printf("len %d \n", len);
+    int k = 0;
+    for (int i = len-1; i >= 0; i--) {
+      num = digitChar(arrDec[k],base);//+81 1 line
+      printf(" num %d \n", num);
+      //numberDiv = divFunc(base, num, i);// get rid
+      printf(" num %d \n", numberDiv);
 
-      num = digitChar(number[k],base);
+      number[k] = num;
+      printf("%d\n", number[k]);
+      //finalNum = number;
+      //printf("%s\n", finalNum);
+      k++;
     }
 
-    return finalSum;
+    return number;
 }
 
 // function main()
@@ -196,6 +217,7 @@ int main(int count, char *word[]) {
 
     // calculate the sum of the two numbers
     int result = num1 + num2;
+    printf("Result %d\n", result);
 
     // convert the decimal result back to the base of the numbers
     char text[WIDTH];
