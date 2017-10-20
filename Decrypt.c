@@ -78,18 +78,14 @@ void rotate_left3(unsigned *bits){
   // 1. shift 3 to the left and & with 127,
   // 2. copy shift right  4 then or (|) it with zeros
   // and then combine 1 and 2
-  int bits2=74;
-  int bits1 = 74;
-  printf("bits2 %d bits1 %d\n",bits2 , bits1 );
-  // int x = 3;
+  unsigned bits2=bits;
+
    bits2 = bits2 << 3;
    bits2 = bits2 & 127;
-   printf("bits2 %d\n",bits2 );
-   bits1 = bits1 >> 4;
-   printf("bits1 %d\n",bits1 );
 
-   bits= bits2 + bits1;
-   printf("bits %d\n",bits );
+   bits = (int) bits >> 4;
+
+   bits= bits2 +(int) bits;
 }
 
 // //shuffle the 7 nibbles according to the pattern
@@ -152,7 +148,9 @@ void decode_28bits (unsigned cipher, char *plain, unsigned key1, unsigned key2){
     //output should be 155406014
 
     //rotate left 3
-    rotate_left3(bits);
+    //Note: need to call get_n_bits to shuffle by seven
+        //Maybe create another method to do this??
+    rotate_left3(74);
 
 }
 
