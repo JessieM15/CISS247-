@@ -90,34 +90,28 @@ void rotate_left3(unsigned *bits){
 
 // //shuffle the 7 nibbles according to the pattern
 void shuffle_nibbles (unsigned *bits){
-  printf("nibbles %d\n",bits );
-  unsigned bits6, bits5, bits4, bits3, bits2, bits1, bits0 = 0;
-  //unsigned 4bits = bits;
-  int width = 4;
-  for (int i = 0; i <= 6; i++) {
-    if (i==6) {
-          bits6 = get_n_bits(bits, width, i);
-          printf("bits6 %d\n",bits6 );
-    }else if (i==5) {
-          bits5 = get_n_bits(bits, width, i);
-          printf("bits5 %d\n",bits5 );
-    }else if (i==4) {
-          bits4 = get_n_bits(bits, width, i);
-          printf("bits4 %d\n",bits4 );
-    }else if (i==3) {
-          bits3 = get_n_bits(bits, width, i);
-          printf("bits3 %d\n",bits3 );
-    }else if (i==2) {
-          bits2 = get_n_bits(bits, width, i);
-          printf("bits2 %d\n",bits2);
-    }else if (i==1) {
-          bits1 = get_n_bits(bits, width, i);
-          printf("bits1 %d\n",bits1 );
-    }else if (i==0) {
-          bits0 = get_n_bits(bits, width, i);
-          printf("bits0 %d\n",bits0);
+      for (int i = 28; i > 0; i--) {
+        if(i>25){
+          bit6 += bits[i];
+        }else if (i>=24 && i<=21) {
+          bit5 += bits[i];
         }
-    }
+        }else if (i>=24 && i<=21) {
+          bit4 += bits[i];
+        }
+      }else if (i>=1 && i<=15) {
+          bit3 += bits[i];
+        }
+      }else if (i>=14 && i<=10) {
+          bit2 += bits[i];
+        }
+      }else if (i>=9 && i<=5) {
+          bit1 += bits[i];
+        }
+      }else if (i>=4 && i<=0) {
+          bit0 += bits[i];
+        }
+      }
     bits = bits3 + bits1 + bits2 + bits0 + bits4 + bits5 + bits6;
     //should be 123418445
     //printf("nibbles %d\n",bits );
