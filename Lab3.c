@@ -51,7 +51,7 @@ For example,
 func4(0xFFFFFFFD) should return 0, func4(0xAAAAAAAA) should return 1
 */
 void func4(int a){
-
+  
 }
 /*Write a function to return a bit
 -
@@ -69,22 +69,23 @@ void func5(int a, int b){
     int y = 0;
     int ans,z;
 
-    x = ~x << a;
+    x = ~x << a; //set the bits above the highbit
 
-    y = ~(~y << b);
+    y = ~(~y << b); //sets the bits below he lowbit
 
-    z = ~(1<<a);
+    z = ~(1<<a); //masks all but lowest highest bit
 
-    x = x & z;
+    x = x & z; // does an & to get '1' above and below
 
-    ans = ~(x | y);
+    ans = ~(x | y); // get final '1' in mask
     printf("ans %d\n", ans);
 }
 
 
 int main(int count, char *word[]) {
-    //func1(4,5);
-    //func2(4,5);
-    func4(5);
-    func5(5,3);
+    //func1(4,5); //done
+    //func2(4,5); //done
+    //func4(85);
+    //func4(170);
+    func5(5,3); //done
 }
