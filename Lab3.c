@@ -35,7 +35,7 @@ void func1(int a, int b){
 
 void func2(int a, int b){
 
-  int x = 0;
+  int x;
 
   a = ~a;
 
@@ -65,31 +65,19 @@ should return 56 (0x38 = 00111000
 */
 // shift the bits so only ones between a and b
 void func5(int a, int b){
-    int x = 127;
-    int y = 127;
-    int ans,mask1,mask2, mask3;
+    int x = 0;
+    int y = 0;
+    int ans,z;
 
-    x = x << a;
-    printf("a %d\n", x);
-    mask1 = ~0;//<<a;
+    x = ~x << a;
 
-    printf("mask1 %d\n", mask1);
+    y = ~(~y << b);
 
-    y = ~(y << b);
-    printf("b %d\n", y);
-    mask2 = ~(~0<<b);
-    printf("mask2 %d\n", mask2);
+    z = ~(1<<a);
 
-    mask3 = ~(1<<a);
-    printf("mask3 %d\n", mask3);
+    x = x & z;
 
-    ans = x & y;
-    printf("ans %d\n", ans);
-
-    mask1 = mask1 & mask3;
-    printf("mask1 %d\n", mask1);
-
-    ans = ~(mask1 | mask2);
+    ans = ~(x | y);
     printf("ans %d\n", ans);
 }
 
