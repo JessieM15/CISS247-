@@ -43,6 +43,16 @@ void func2(int a, int b){
   printf("%d\n",x );
 
 }
+/* Write a function to return 1 if all the odd-numbered
+bits in an integer are set to 1, and return 0 otherwise.
+int func4(int x);
+
+For example,
+func4(0xFFFFFFFD) should return 0, func4(0xAAAAAAAA) should return 1
+*/
+void func4(int a){
+
+}
 /*Write a function to return a bit
 -
 mask with all 1's between lowbit and highbit, inclusive.
@@ -55,21 +65,38 @@ should return 56 (0x38 = 00111000
 */
 // shift the bits so only ones between a and b
 void func5(int a, int b){
-    int x = 128;
-    int y = 128;
-    int ans;
+    int x = 127;
+    int y = 127;
+    int ans,mask1,mask2, mask3;
 
-    x = x >> a;
-    y = y << b;
+    x = x << a;
+    printf("a %d\n", x);
+    mask1 = ~0;//<<a;
 
-    ans = x | y;
+    printf("mask1 %d\n", mask1);
 
-    printf("%d\n", x);
+    y = ~(y << b);
+    printf("b %d\n", y);
+    mask2 = ~(~0<<b);
+    printf("mask2 %d\n", mask2);
+
+    mask3 = ~(1<<a);
+    printf("mask3 %d\n", mask3);
+
+    ans = x & y;
+    printf("ans %d\n", ans);
+
+    mask1 = mask1 & mask3;
+    printf("mask1 %d\n", mask1);
+
+    ans = ~(mask1 | mask2);
+    printf("ans %d\n", ans);
 }
 
 
 int main(int count, char *word[]) {
-    func1(4,5);
-    func2(4,5);
+    //func1(4,5);
+    //func2(4,5);
+    func4(5);
     func5(5,3);
 }
