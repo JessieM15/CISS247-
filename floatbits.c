@@ -60,43 +60,40 @@ int float_bitsfloat_absval(float_bits f){
 //Given a parameter f, this function will compute 2*f.
 //If f is Nan, the function should simply return f.
 int float_bitsfloat_twice(float_bits f){
+  unsigned x = f >> 31;
+  x = x << 31;
+
+  return x + (f << 1);
   return f << 1;
 }
 // Given a parameter f, this function will compute 0.5*f.
 // If f is Nan, the function should simply return f.
 int float_bitsfloat_half(float_bits f){
-  unsigned x = f >> 31;
-  x = x << 31;
+  // unsigned x = f >> 31;
+  // x = x << 31;
 
-  return f >> 1;
+  return  (f >> 1);
 }
 int main(int count, char *word[]) {
-  unsigned f = 1073741824;
-  //f = 2143289344;
-  printf("Float Class expected output\n", );
-  printf("%u\n", float_class(2143289344));
-     printf("dob %u\n",float_bitsfloat_twice(f));
-    // printf("%u\n",float_bitsfloat_twice(5453657.2));
-    // printf("%u\n",float_bitsfloat_twice(5453656457.2));
-    // printf("%u\n",float_bitsfloat_twice(54536566543257.2));
-    //
-    printf("haf %u\n",float_bitsfloat_half(f));
-    // printf("%u\n",float_bitsfloat_half(5453657.2));
-    // printf("%u\n",float_bitsfloat_half(5453656457.2));
-    // printf("%u\n",float_bitsfloat_half(54536566543257.2));
+  unsigned fp = 829510255; //00110001011100010101001001101111
+  unsigned fn = 2976993903; //10110001011100010101001001101111
 
-     printf("neg %u\n",float_bitsfloat_negate(f));
-    // printf("| %u\n",float_bitsfloat_negate(5));
-    // printf("| %u\n",float_bitsfloat_negate(-5678));
-    // printf("| %u\n",float_bitsfloat_negate(5678));
+  printf("F is positive: %u\n", fp);
+  printf("neg %u\n",float_bitsfloat_negate(fp));  //2976993903
+  printf("abs %u\n",float_bitsfloat_absval(fp)); //829510255
+  printf("dob %u\n",float_bitsfloat_twice(fp)); //1659020510
+  printf("haf %u\n",float_bitsfloat_half(fp));  //414755127
 
-    printf("abs %u\n",float_bitsfloat_absval(f));
-    // printf("| %u\n",float_bitsfloat_absval(5));
-    // printf("| %u\n",float_bitsfloat_absval(-5678));
-    // printf("| %u\n",float_bitsfloat_absval(5678));
+  printf("F is negative: %u\n", fn);
+  printf("neg %u\n",float_bitsfloat_negate(fn)); //2976993903
+  printf("abs %u\n",float_bitsfloat_absval(fn)); //829510255
+  printf("dob %u\n",float_bitsfloat_twice(fn));  //3806504158
+  printf("haf %u\n",float_bitsfloat_half(fn));   //1488496951
 
-     printf("%u\n", float_class(8));
-     printf("%u\n", float_class(2345676543));
+  printf("Float class zero: %u\n", float_class(10)); //zero
+  printf("Float class positive: %u\n", float_class(130652573)); //normalized - return positive - 3170893824
+  printf("Float class negative: %u\n", float_class(2144480651)); //denormalized - return neg - 4110417920
+
     return 0;
 }
 
