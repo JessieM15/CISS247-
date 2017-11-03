@@ -13,20 +13,30 @@
 
 typedef unsigned float_bits;
 /* Write a function to identify the class of
-   floating-point number represented by a float_bitsparameter:
+   floating-point number represented by a float_bits parameter:
    This function must return:
    -negative integer, if the floating-point number is a “special”(±∞, or NaN).
    -zero, if the floating-point number is denormalized.
    -positive integer, if the floating-point number is normalized.
 */
 int float_class(float_bits f){
-  int var = f >> 23;
-  return var + (var<<8) + (var<<16) + (var<<20);
-  unsigned e = (f<<1);  //left 1 to get rid of exp
+  //isolate exponent
+  unsigned e = (f<<1);  //left 1 to get rid of sign
            e = (e>>22); //shift exp to right 22
-  unsigned m = (f<<9);  //shift up to clear out exp and sign then
-           m = (m>>9);  //shift back down
-  return 0;
+      //getting each bit
+  unsigned e1 = (e << 7);
+  unsigned e2 = (e << 6) +(e >> 1);
+  unsigned e3 = (e << 5) +(e >> 2);
+  unsigned e4 = (e << 4) +(e >> 3);
+  unsigned e5 = (e << 3) +(e >> 4);
+  unsigned e6 = (e << 2) +(e >> 5);
+  unsigned e7 = (e << 1) +(e >> 6);
+  unsigned e8 = (e >> 7);
+
+  //add together to get 0 or 8 or 1-7
+  unsigned x = e1 + e2 + e3 + e4 + e5 + e6 + e7 + e8;
+  //shift to top of item
+  return x << 24;
 
 }
 // Given a parameter f, this function will compute –f.If f is Nan,
@@ -45,7 +55,6 @@ int float_bitsfloat_absval(float_bits f){
   x = f << 1;
   x = x >> 1;
   return  x;
-
 }
 
 //Given a parameter f, this function will compute 2*f.
@@ -56,11 +65,16 @@ int float_bitsfloat_twice(float_bits f){
 // Given a parameter f, this function will compute 0.5*f.
 // If f is Nan, the function should simply return f.
 int float_bitsfloat_half(float_bits f){
+  unsigned x = f >> 31;
+  x = x << 31;
+
   return f >> 1;
 }
 int main(int count, char *word[]) {
   unsigned f = 1073741824;
-  //f =   2143289344;
+  //f = 2143289344;
+  printf("Float Class expected output\n", );
+  printf("%u\n", float_class(2143289344));
      printf("dob %u\n",float_bitsfloat_twice(f));
     // printf("%u\n",float_bitsfloat_twice(5453657.2));
     // printf("%u\n",float_bitsfloat_twice(5453656457.2));
@@ -81,7 +95,8 @@ int main(int count, char *word[]) {
     // printf("| %u\n",float_bitsfloat_absval(-5678));
     // printf("| %u\n",float_bitsfloat_absval(5678));
 
-    // printf("%u\n", float_class(0));
-    // printf("%u\n", float_class(2345676543));
+     printf("%u\n", float_class(8));
+     printf("%u\n", float_class(2345676543));
     return 0;
 }
+
