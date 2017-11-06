@@ -1,9 +1,12 @@
 int main (){
-  long int x = 19;
-   int y = 34;
-  long int z = 12;
-  x = x+x;
-  z = x << 2;
+  // long int x;
+  // int y,z;
+  int x = 19;
+  int y = 34;
+  int z = 12;
+  int a;
+  a =a +(x+x);
+  z = z+ (x << 2);
   x = x + z;
-  
+  return 0;
 }
