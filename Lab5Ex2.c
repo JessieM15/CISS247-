@@ -5,8 +5,8 @@ int main (){
   int y = 34;
   int z = 12;
   int a;
-  a =a +(x+x);
-  z = z+ (x << 2);
-  x = x + z;
-  return 0;
+
+  a = x + x;
+  a += x;
+  z = (y << 2);
 }
