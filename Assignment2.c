@@ -4,7 +4,8 @@ char wordlist[MAX_WORDS][MAX_WORD_LEN];
 
 void fillWordArray(fullArray []){
   for (int i = 0; i < sizeof(fullArray); i++) {
-    /* code */
+   if(fullArray [i] == '\n'){
+     
   }
 
 }
