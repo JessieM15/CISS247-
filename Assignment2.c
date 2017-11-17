@@ -12,7 +12,7 @@
 //declare array 110k long each with 40 characters
 char wordlist[MAX_WORDS][MAX_WORD_LEN];
 int lengwords; //total words in dictionary
-int bestham = MAX_WORD_LEN;
+
 //Then you can access the ith word in the list as wordlist[i].
 
 int fillWordArray(char *argv){
@@ -80,96 +80,64 @@ int main(int argc, char *argv[]) {
   char word[MAX_WORD_LEN];
   int ham;
   char hamtrack [5][MAX_WORD_LEN];
+  int bestham = MAX_WORD_LEN;
 
   //printf("test");
 
-   if(argc < 2){
+   if(argc != 2){
      printf("Format of Command is as followed : ./Assignment2 wordlist.txt ");
     return 0;
    }
 
    lengwords = fillWordArray(argv[1]);
-   //printf("%d\n",lengwords );
+   //printf("%d\n",lengwords ); should be 194
 
    //this is to test the hamming distance
     // char word1[] = "app";
-     char word2[] = "app";
+     char word2[] = "states";
+    // printf("word %d\n",(int)strlen(word2));
     // hammingDist(word1, word2);
-
- //for (int j = 0; j < 10; j++) {
- //int j = 0;
    for (int i = 0; i < lengwords; i++) {
-  //  printf("%d\n",(int)strlen(wordlist [i]));
-  //  printf("%d\n",(int)strlen(word2));
-    if ((int)(strlen(wordlist[i])-1) == ((int)strlen(word2))){ //|| (strlen(wordlist[i]) == (int)strlen(word2)+1)||
+//printf("%d\n", (int)(strlen(wordlist[i])+2));
+
+    if ((strlen(wordlist[i])-2) == (strlen(word2))){ //|| (strlen(wordlist[i]) == (int)strlen(word2)+1)||
                                                 //(int)strlen(wordlist[i]) == (int)strlen(word2)-1) {
-    //printf("test " );
-     ham = (hammingDist(wordlist[i],word2)-1);
-    // bestham = minham(ham, lengwords, wordlist, word2);
-     //printf("%d\n",ham );
-     //
-     // if (ham == 0){
-     //   printf("you spelled it correctly \n");
-     //   return 0;
-     // }else if (ham == bestham){
-     //   //printf("%d ",bestham );
-     //   //strcpy(hamtrack[j], wordlist[i]);
-     //   printf("%d",ham );
-     //   printf("%s\n",wordlist[i]);
-     //   //hamtrack [j] = wordlist[i];
-     //   //j++;
-     //  //  sort(ham, hamtrack);
+        //printf("%d\n",(int)strlen(wordlist [i])-2);
+        //printf("%s\n",wordlist [i]);
+     ham = (hammingDist(wordlist[i],word2)-2);
      if (ham < bestham) {
         bestham = ham;
-        //strcpy(hamtrack[j], wordlist[i]);
-        // printf("%d",ham );
-        // printf("%s\n",wordlist[i]);
-      //  hamtrack [j] = wordlist[i];
-        //printf("b: %d ",bestham );
-        //j = 0;
+        // printf("%d \n",bestham );
+        // printf("%s\n", wordlist[i]);
+      }
     }
-  }
    }
 
 
+int counter=0;
    for (int j = 0; j < lengwords; j++) {
-     int counter=0;
-  //  printf("%d\n",(int)strlen(wordlist [i]));
-  //  printf("%d\n",(int)strlen(word2));
-    if ((int)(strlen(wordlist[j])-1) == ((int)strlen(word2))){ //|| (strlen(wordlist[i]) == (int)strlen(word2)+1)||
-                                                //(int)strlen(wordlist[i]) == (int)strlen(word2)-1) {
-    //printf("test " );
-     ham = (hammingDist(wordlist[j],word2)-2);
 
-    // bestham = minham(ham, lengwords, wordlist, word2);
-     //printf("%d\n",ham );
-     //
+     if ((strlen(wordlist[j])-2) == (strlen(word2))){ //|| (strlen(wordlist[i]) == (int)strlen(word2)+1)||
+                                                //(int)strlen(wordlist[i]) == (int)strlen(word2)-1) {
+
+     ham = (hammingDist(wordlist[j],word2)-2);
+     // printf("h %d  ", ham);
+     // printf("bh %d\n", bestham);
      if (ham == 0){
        printf("you spelled it correctly \n");
        return 0;
-     // }else if (ham == bestham){
-     //   //printf("%d ",bestham );
-     //   //strcpy(hamtrack[j], wordlist[i]);
-     //   printf("%d",ham );
-     //   printf("%s\n",wordlist[i]);
-     //   //hamtrack [j] = wordlist[i];
-     //   //j++;
-     //  //  sort(ham, hamtrack);
-
-
-   }else if (ham < bestham && (counter<5)) {
+     }else if ((ham <= bestham) && (counter<5)) {
         bestham = ham;
+
+        printf("%s\n",wordlist[j] );
         counter ++;
+        //printf("c %d\n",counter  );
       }
     }
 }
-   //int a = strlen(hamtrack);
-   // for (int i = 0; i < 5; i++) {
-   //   printf("%s",hamtrack[i]);
-   // }
-
   //get word from user
   while(1){
+    if
     printf("Enter a word: ");
     fgets(word, MAX_WORD_LEN, stdin);
 
