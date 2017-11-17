@@ -5,89 +5,131 @@
 */
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 #define MAX_WORD_LEN 40
 #define MAX_WORDS 110000
+//declare array 110k long each with 40 characters
+char wordlist[MAX_WORDS][MAX_WORD_LEN];
+int lengwords;
+int bestham = MAX_WORD_LEN;
+//Then you can access the ith word in the list as wordlist[i].
 
-// //declare array 110k long each with 40 characters
-// //char wordlist[MAX_WORDS][MAX_WORD_LEN];
-// //Then you can access the ith word in the list as wordlist[i].
-//
-void fillWordArray(char (*wordlist)[MAX_WORD_LEN]){
-  // fill 2d array from the 1d array so it is filled properly
-  int j = 0;
-  //printf("%d\n",sizeof(wordlist[i][]));
-  for (int i = 0; i < sizeof(wordlist)+1; i++) {
+int fillWordArray(char *argv){
+  int lengwords=0;
+  FILE *input = fopen(argv, "r");
+//  char temp[MAX_WORD_LEN];
+  //fgets(wordlist[i], MAX_WORD_LEN, input);
 
-    for (int j = 0; j < sizeof(wordlist)+1; j++) {
-      //printf("%d\n",sizeof(wordlist[i][j]));
-  //  printf("%c\n",wordlist[i][j]);
-
-    //while (wordlist[i][j] == '\n') {
-    wordlist[i][j] = wordlist[i][j];
-    //printf("%c",wordlist[i][j]);
-    //}
-    if(wordlist[i][j] == '\n'){
-      wordlist[i][j] = '\0';
-      //printf("test");
+  while (1) {
+    // if (wordlist[i] == '\n') {
+    //   wordlist[i] = '\0';
+    // }
+    fgets(wordlist[lengwords], MAX_WORD_LEN, input);
+    // for (int j = 0; j < (int) strlen(temp); j++) {// instead strcpy
+    //   /* code */
+    // }
+  //  printf("%c",input[i]);
+    if (feof(input)) {
+      break;
     }
-
-
-    }
-
-
+    lengwords++;
+    //printf("%s\n", );
   }
-//printf("\n" );
+  //printf("%d",lengwords);
+  return lengwords;
+
 }
+int hammingDist(char *given, char *dword){
+  // need to find all the same length words,
+  // then find the first letter that is the same
+  // closest word by comparing the next letters
+  // and keeping track of hamming dist,
+  // return words with same hamming distance
+  //   if hammming dist = 0 return word
+  int ham = 0;
 
+  for (int i = 0; i < (int)strlen(given); i++) {
+        if(dword[i] != given [i]){
+          ham ++;
+      }
+    }
+    //printf("%d\n", ham);
+    return ham;
+  }
 
-// void hammingDist(char *given, char (*wordlist)[MAX_WORD_LEN]){
-//   // need to find all the same length words,
-//   // then find the first letter that is the same
-//   // closest word by comparing the next letters
-//   // and keeping track of hamming dist,
-//   // return words with same hamming distance
-     // if hammming dist = 0 return word
-//   chat tempWords [][];
+  //for loop thru temp word to get hamming dist
+  //return 0;
+// void sort(int ham, int *hamtrack){
 //
-//   for (int i = 0; i < sizeof(wordlist); i++) {
-//     for (int j = 0; j< sizeof(wordlist); j++) {
-//       printf("%c",wordlist[i][j]);
-//
-//         if(wordlist [i][j]== given [i]){
-//           printf("%c\n",wordlist[i][j]);
-//       }
-//     }
-//   }
-//
-//   //for loop thru temp word to get hamming dist
-//   //return 0;
 // }
 
 int main(int argc, char *argv[]) {
   // need to take input and make it all lower cases
   // so can later be compared
+  char word[MAX_WORD_LEN];
+  int ham;
+  char hamtrack [5][MAX_WORD_LEN];
 
-   if(strlen(argv) < 2){
+  //printf("test");
+
+   if(argc < 2){
      printf("Format of Command is as followed : ./Assignment2 wordlist.txt ");
-     return 0;
+    return 0;
    }
 
-    char wordlist[MAX_WORDS][MAX_WORD_LEN];
-    FILE *input = fopen(argv[1], "r");
-    for (int i = 0; i < sizeof(input); i++) {
-      fgets(wordlist[i], MAX_WORD_LEN, input);
-    }
-printf("%d\n",sizeof(wordlist));
-  //get word from user
-  char word[MAX_WORD_LEN];
-fgets(word, MAX_WORD_LEN, stdin);
-  if (word == 0){
-    printf("Form");
-    return 0;
-  }
+   lengwords = fillWordArray(argv[1]);
 
-  tolower(word); //makes user input lowercase
-  fillWordArray(wordlist);
-  //hammingDist(word, wordlist);
+   //this is to test the hamming distance
+   // char word1[] = "apple";
+    char word2[] = "arr";
+   // hammingDist(word1, word2);
+
+ //for (int j = 0; j < 10; j++) {
+ int j = 0;
+   for (int i = 0; i < lengwords; i++) {
+    //printf("%s\n",wordlist [i]);
+     ham = (hammingDist(wordlist[i],word2)-2); //-2 takes into consideration of not geeting rid of /n in fillWordArray
+     if (strlen(wordlist[i]) == strlen(word2)){ //|| (strlen(wordlist[i]) == (int)strlen(word2)+1)||
+                                                //(int)strlen(wordlist[i]) == (int)strlen(word2)-1) {
+         if (ham == 0){
+           printf("you spelled it correctly \n");
+           return 0;
+           } else if (ham == bestham){
+             //printf("%d ",bestham );
+             strcpy(hamtrack[j], wordlist[i]);
+            // printf("%s \n",hamtrack[i]);
+             //hamtrack [j] = wordlist[i];
+             j++;
+            //  sort(ham, hamtrack);
+            }else if (ham <= bestham) {
+              bestham = ham;
+              strcpy(hamtrack[j], wordlist[i]);
+              //printf("%s \n",hamtrack[i]);
+              //hamtrack [j] = wordlist[i];
+              //printf("b: %d ",bestham );
+              j = 0;
+            }
+          }
+        }
+   for (int i = 0; i < 6; i++) {
+     printf("%s \n",hamtrack[i]);
+   }
+
+  //get word from user
+  while(1){
+    printf("Enter a word: ");
+    fgets(word, MAX_WORD_LEN, stdin);
+
+    //tolower only looks at each individual charchter
+    for (int i = 0; i < (int)strlen(word); i++) {
+      word[i] = (char) tolower(word[i]);//tolower() makes user input lowercase
+    }
+
+    //printf("\n" );
+    if (strlen(word-1)==0) {
+      printf("Bye \n");
+      return 0;
+    }
+  }
 }
