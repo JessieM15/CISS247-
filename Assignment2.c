@@ -89,31 +89,27 @@ int main(int argc, char *argv[]) {
  int j = 0;
    for (int i = 0; i < lengwords; i++) {
     //printf("%s\n",wordlist [i]);
-     ham = (hammingDist(wordlist[i],word2)-2); //-2 takes into consideration of not geeting rid of /n in fillWordArray
-     if (strlen(wordlist[i]) == strlen(word2)){ //|| (strlen(wordlist[i]) == (int)strlen(word2)+1)||
-                                                //(int)strlen(wordlist[i]) == (int)strlen(word2)-1) {
-         if (ham == 0){
-           printf("you spelled it correctly \n");
-           return 0;
-           } else if (ham == bestham){
-             //printf("%d ",bestham );
-             strcpy(hamtrack[j], wordlist[i]);
-            // printf("%s \n",hamtrack[i]);
-             //hamtrack [j] = wordlist[i];
-             j++;
-            //  sort(ham, hamtrack);
-            }else if (ham <= bestham) {
-              bestham = ham;
-              strcpy(hamtrack[j], wordlist[i]);
-              //printf("%s \n",hamtrack[i]);
-              //hamtrack [j] = wordlist[i];
-              //printf("b: %d ",bestham );
-              j = 0;
-            }
-          }
-        }
-   for (int i = 0; i < 6; i++) {
-     printf("%s \n",hamtrack[i]);
+     ham = (hammingDist(wordlist[i],word2)-2);
+
+     if (ham == 0){
+       printf("you spelled it correctly \n");
+       return 0;
+     } else if (ham == bestham){
+       //printf("%d ",bestham );
+       strcpy(hamtrack[j], wordlist[i]);
+       //hamtrack [j] = wordlist[i];
+       j++;
+      //  sort(ham, hamtrack);
+      }else if (ham <= bestham) {
+        bestham = ham;
+        strcpy(hamtrack[j], wordlist[i]);
+      //  hamtrack [j] = wordlist[i];
+        //printf("b: %d ",bestham );
+        j = 0;
+    }
+   }
+   for (int i = 0; i < (int)strlen(hamtrack); i++) {
+     printf("%s",hamtrack[i]);
    }
 
   //get word from user
