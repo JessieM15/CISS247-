@@ -1,4 +1,4 @@
- /*
+/*
   Jessie Manson
   Assignment 2
   11/17/2017
@@ -58,10 +58,20 @@ int hammingDist(char *given, char *dword){
     return ham;
   }
 
-  //for loop thru temp word to get hamming dist
-  //return 0;
-// void sort(int ham, int *hamtrack){
+// int minham(int ham, int lengwords, char *wordlist, char *word2){
+//   int bestham = MAX_WORD_LEN;
+//   for (int i = 0; i < lengwords; i++) {
+//     ham = (hammingDist(wordlist[i],word2)-2);
+//     if (ham < bestham) {
+//       bestham = ham;
+//       //strcpy(hamtrack[j], wordlist[i]);
 //
+//     //  hamtrack [j] = wordlist[i];
+//       //printf("b: %d ",bestham );
+//       //j = 0;
+//   }
+//  }
+//  return bestham;
 // }
 
 int main(int argc, char *argv[]) {
@@ -83,7 +93,7 @@ int main(int argc, char *argv[]) {
 
    //this is to test the hamming distance
     // char word1[] = "app";
-     char word2[] = "worms";
+     char word2[] = "app";
     // hammingDist(word1, word2);
 
  //for (int j = 0; j < 10; j++) {
@@ -94,31 +104,65 @@ int main(int argc, char *argv[]) {
     if ((int)(strlen(wordlist[i])-1) == ((int)strlen(word2))){ //|| (strlen(wordlist[i]) == (int)strlen(word2)+1)||
                                                 //(int)strlen(wordlist[i]) == (int)strlen(word2)-1) {
     //printf("test " );
-     ham = (hammingDist(wordlist[i],word2)-2);
+     ham = (hammingDist(wordlist[i],word2)-1);
+    // bestham = minham(ham, lengwords, wordlist, word2);
      //printf("%d\n",ham );
-
-     if (ham == 0){
-       printf("you spelled it correctly \n");
-       return 0;
-     } else if (ham == bestham){
-       //printf("%d ",bestham );
-       //strcpy(hamtrack[j], wordlist[i]);
-       printf("%d",ham );
-       printf("%s\n",wordlist[i]);
-       //hamtrack [j] = wordlist[i];
-       //j++;
-      //  sort(ham, hamtrack);
-      }else if (ham < bestham) {
+     //
+     // if (ham == 0){
+     //   printf("you spelled it correctly \n");
+     //   return 0;
+     // }else if (ham == bestham){
+     //   //printf("%d ",bestham );
+     //   //strcpy(hamtrack[j], wordlist[i]);
+     //   printf("%d",ham );
+     //   printf("%s\n",wordlist[i]);
+     //   //hamtrack [j] = wordlist[i];
+     //   //j++;
+     //  //  sort(ham, hamtrack);
+     if (ham < bestham) {
         bestham = ham;
         //strcpy(hamtrack[j], wordlist[i]);
-        printf("%d",ham );
-        printf("%s\n",wordlist[i]);
+        // printf("%d",ham );
+        // printf("%s\n",wordlist[i]);
       //  hamtrack [j] = wordlist[i];
         //printf("b: %d ",bestham );
         //j = 0;
     }
   }
    }
+
+
+   for (int j = 0; j < lengwords; j++) {
+     int counter=0;
+  //  printf("%d\n",(int)strlen(wordlist [i]));
+  //  printf("%d\n",(int)strlen(word2));
+    if ((int)(strlen(wordlist[j])-1) == ((int)strlen(word2))){ //|| (strlen(wordlist[i]) == (int)strlen(word2)+1)||
+                                                //(int)strlen(wordlist[i]) == (int)strlen(word2)-1) {
+    //printf("test " );
+     ham = (hammingDist(wordlist[j],word2)-2);
+
+    // bestham = minham(ham, lengwords, wordlist, word2);
+     //printf("%d\n",ham );
+     //
+     if (ham == 0){
+       printf("you spelled it correctly \n");
+       return 0;
+     // }else if (ham == bestham){
+     //   //printf("%d ",bestham );
+     //   //strcpy(hamtrack[j], wordlist[i]);
+     //   printf("%d",ham );
+     //   printf("%s\n",wordlist[i]);
+     //   //hamtrack [j] = wordlist[i];
+     //   //j++;
+     //  //  sort(ham, hamtrack);
+
+
+   }else if (ham < bestham && (counter<5)) {
+        bestham = ham;
+        counter ++;
+      }
+    }
+}
    //int a = strlen(hamtrack);
    // for (int i = 0; i < 5; i++) {
    //   printf("%s",hamtrack[i]);
