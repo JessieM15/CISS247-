@@ -30,12 +30,7 @@ int fillWordArray(char *argv){
 
 }
 int hammingDist(char *given, char *dword){
-  // need to find all the same length words,
-  // then find the first letter that is the same
-  // closest word by comparing the next letters
-  // and keeping track of hamming dist,
-  // return words with same hamming distance
-  //   if hammming dist = 0 return word
+
   int ham = 0;
 
   for (int i = 0; i < (int)strlen(given); i++) {
@@ -47,29 +42,14 @@ int hammingDist(char *given, char *dword){
     return ham;
   }
 
-// int minham(int ham, int lengwords, char *wordlist, char *word2){
-//   int bestham = MAX_WORD_LEN;
-//   for (int i = 0; i < lengwords; i++) {
-//     ham = (hammingDist(wordlist[i],word2)-2);
-//     if (ham < bestham) {
-//       bestham = ham;
-//       //strcpy(hamtrack[j], wordlist[i]);
-//
-//     //  hamtrack [j] = wordlist[i];
-//       //printf("b: %d ",bestham );
-//       //j = 0;
-//   }
-//  }
-//  return bestham;
-// }
 int getusr(){
   char word[MAX_WORD_LEN];
-  int ham;
+  int ham,bestham;
   char hamtrack [5][MAX_WORD_LEN];
 
   while(1){
-
-    printf("Enter a word: ");
+    bestham = MAX_WORD_LEN;
+    printf("\nEnter a word: ");
     fgets(word, MAX_WORD_LEN, stdin);
 
     if ((strlen(word)-1)==0) {
@@ -112,7 +92,7 @@ int getusr(){
       }else if ((ham <= bestham) && (counter<5)) {
          bestham = ham;
 
-         printf("%s\n",wordlist[j] );
+         printf(" possiblilty: %s",wordlist[j] );
          counter ++;
          //printf("c %d\n",counter  );
        }
