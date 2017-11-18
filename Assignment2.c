@@ -18,25 +18,14 @@ int lengwords; //total words in dictionary
 int fillWordArray(char *argv){
   int lengwords=0;
   FILE *input = fopen(argv, "r");
-//  char temp[MAX_WORD_LEN];
-  //fgets(wordlist[i], MAX_WORD_LEN, input);
-
   while (1) {
-    // if (wordlist[i] == '\n') {
-    //   wordlist[i] = '\0';
-    // }
     fgets(wordlist[lengwords], MAX_WORD_LEN, input);
-    // for (int j = 0; j < (int) strlen(temp); j++) {// instead strcpy
-    //   /* code */
-    // }
-  //  printf("%c",input[i]);
+
     if (feof(input)) {
       break;
     }
     lengwords++;
-    //printf("%s\n", );
   }
-  //printf("%d",lengwords);
   return lengwords;
 
 }
@@ -146,7 +135,7 @@ int main(int argc, char *argv[]) {
   //printf("test");
 
    if(argc != 2){
-     printf("Format of Command is as followed : ./Assignment2 wordlist.txt ");
+     printf("Format of Command is as followed: \n  ./Assignment2 wordlist.txt \n  ./Assignment2 wordEn.txt \n");
     return 0;
    }
 
