@@ -127,13 +127,18 @@ int main(int argc, char *argv[]) {
  //   size = argv[2];
  // }
  int len = 0;
-  char wnum [] = {'0','2','1','9','8','\0'};
+  char wnum [] = {'0','2','1','9','8','9','\0'};
   while (wnum[len] != '\0') {
     //length function
     //printf("len %d \n", len);
   //  printf("%c\n",wnum[len] );
     len++; //length
 
+  }
+// while loop through max digits length of
+  i=0;
+  while (sscanf(input,"%c",wnum[i])) {
+    i++;
   }
   // printf("%d\n",(int)sizeof(wnum)-1);
   // printf("%d\n",len);
