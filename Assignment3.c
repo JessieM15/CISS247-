@@ -10,54 +10,44 @@
 
 int size = 1;
 int len;
+char under = '_';
 
 void sTopZone(char num){
-  //printf("%c  ", num );
+//printf("%c  ", num );
   if ((num != '1') && (num != '4') && (num != '-')){
-    printf(" ");
+    //printf(" ");
     for (int i = 0; i < size; i++) {
-      printf("_");
+      printf(" _ \t");
     }
-    printf(" ");
-
+    // for (int i = 0; i < size; i++) {
+    //   printf(" ");
+    // }
+  }else{
+    for (int i = 0; i < size; i++) {
+      printf("   \t");
+    }
   }
 
-  else{
-    for (int i = 0; i < size; i++) {
-      printf(" ");
-    }
-  }
-
-  //printf("  ");
+ //printf("  ");
 }
 void sMidZone(char num){
   //printf("AM %d  ", num );
 
         if (num == '1' || num == '7'){
-            for (int i = 0; i < (size-1); i++) {
-              printf(" ");
-            }
+            // for (int i = 0; i < (size-1); i++) {
+            //   printf(" ");
+            // }
             for (int i = 0; i < size; i++) {
-              printf(" | \t");
+              printf("  |\t");
             }
 
           }else if (num == '0' ) {
             for (int i = 0; i < (size); i++) {
-              printf("|");
-              for (int j = 0; j < size; j++) {
-                /* print spaces */
-                printf(" ");
+            //  if(i != 0 && i != size-1){
+                //printf(" ");
+              // }else{
+                printf("| |\t");
               }
-              printf("|");
-             if(i != size-1){
-               // for (int j = 0; j < size-1; j++) {
-               //   /* print spaces */
-                 printf(" \t");
-               // }
-              }
-
-            }
-              printf("\t");
           }else if (num == '2' || num == '3') {
             for (int i = 0; i < (size); i++) {
               // need 2 foor loops to keep track of spaces
@@ -83,29 +73,13 @@ void sMidZone(char num){
 
   void sBotZone(char num){
   // printf("B %d  ", num );
+      for (int i = 0; i < size; i++) {
           if (num == '1' ){
-              printf(" | \t");
+              printf("  |\t");
             }else if (num == '4' || num == '7') {
               printf("  |\t");
-
             }else if (num == '0' || num == '6' || num == '8' ) {
-              for (int i = 0; i < size; i++) {
-                printf("|");
-                if(i == (size-1)){
-                  //printf("|");
-                  for (int k = 0; k < size; k++) {
-                    printf("_");
-                  }
-                  printf("|");
-                  break;
-                }
-                for (int j = 0; j < size; j++) {
-                  printf(" ");
-                }
-                printf("|\n" );
-              }
-                printf("\t");
-
+              printf("|_|\t");
             }else if (num == '3' || num == '5' || num == '9') {
               printf(" _|\t");
             }else if (num == '2') {
@@ -118,18 +92,14 @@ void sMidZone(char num){
         }
       }
       //printf("");
-
+    }
 void aTopZone(char *wnum, int len){
   //for length of number
   //call sTopZone on every number
   //then print /n
   for (int i = 0; i < len; i++) {
-    for (int j = 0; j < size; j++) {
-      sTopZone(wnum [i]);
-      printf("\t");
-    }
     //printf("%c\n", (int)wnum[i] );
-
+    sTopZone(wnum [i]);
   }
   printf("\n");
 
@@ -157,23 +127,17 @@ void aBotZone(char *wnum, int len){
 }
 int main(int argc, char *argv[]) {
  //  int wnum;
-  size = 3;
+ int size = 1;
   if(argc < 2 || argc > 3){
     printf("Format of Command is as followed: \n  ./Assignment3 # size\n  Where the size is optional \n");
     printf("EXAMPLES: \n ./Assignment3 1234 \n ./Assignment3 1234 2 \n");
    return 0;
-  }
-  if(argc == 3){
+  }if(argc == 3){
    size = (int)argv[2];
-   printf("%s\n",argv[2] );
-   printf("%d\n",size );
-   if (size > 5 && size < 1){
-     printf("Whoops size must be between 0 and 5. \n");
-    }
  }
 
  int len = 0;
-  char wnum [] = {'0','0','\0'};
+  char wnum [] = {'0','2','0','9','0','9','0','\0'};
 //  printf("%s\n",argv[1]);
   char temp[4];
   strcpy(wnum, argv[1]);
