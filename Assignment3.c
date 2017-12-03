@@ -99,10 +99,10 @@ void aTopZone(char *wnum, int len){
   //then print /n
   for (int i = 0; i < len; i++) {
     //printf("%c\n", (int)wnum[i] );
-    for (int j = 0; j < size; j++) {
+    //for (int j = 0; j < size; j++) {
       sTopZone(wnum [i]);
       printf(" ");
-    }
+    //}
   }
   printf("\n");
 
@@ -136,19 +136,40 @@ void aBotZone(char *wnum, int len){
   }
   printf("\n");
 }
+void calcsize(char *scale){
+  if (scale[0] == '1' ) {
+    size = 1;
+  }else if (scale[0] == '2' ) {
+    size = 2;
+  }else if (scale[0] == '3' ) {
+    size = 3;
+  }else if (scale[0] == '4' ) {
+    size = 4;
+  }else if (scale[0] == '5') {
+    size = 5;
+  }else{
+    printf("Size needs to be between 1 and 5 \n Size default is 1\n");
+    exit(EXIT_FAILURE);
+  }
+}
 int main(int argc, char *argv[]) {
  //  int wnum;
+ char scale [4];
  int size = 1;
   if(argc < 2 || argc > 3){
     printf("Format of Command is as followed: \n  ./Assignment3 # size\n  Where the size is optional \n");
     printf("EXAMPLES: \n ./Assignment3 1234 \n ./Assignment3 1234 2 \n");
    return 0;
   }if(argc == 3){
-   size = (int)argv[2];
+    strcpy(scale, argv[2]);
+    calcsize(scale);
+  //   printf("%d\n", argv[2]);
+  //   printf("%d\n", (int)argv[2]);
+  //  size = (int)argv[2];
  }
 
  int len = 0;
-  char wnum [] = {'0','2','0','9','0','9','0','\0'};
+  char wnum [40];
 //  printf("%s\n",argv[1]);
   char temp[4];
   strcpy(wnum, argv[1]);
@@ -164,3 +185,4 @@ int main(int argc, char *argv[]) {
 
   return 0;
 }
+
