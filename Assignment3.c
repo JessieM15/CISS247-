@@ -17,14 +17,14 @@ void sTopZone(char num){
   if ((num != '1') && (num != '4') && (num != '-')){
     //printf(" ");
     for (int i = 0; i < size; i++) {
-      printf(" _ \t");
+      printf(" _ ");
     }
     // for (int i = 0; i < size; i++) {
     //   printf(" ");
     // }
   }else{
     for (int i = 0; i < size; i++) {
-      printf("   \t");
+      printf("   ");
     }
   }
 
@@ -38,7 +38,7 @@ void sMidZone(char num){
             //   printf(" ");
             // }
             for (int i = 0; i < size; i++) {
-              printf("  |\t");
+              printf("  |");
             }
 
           }else if (num == '0' ) {
@@ -46,7 +46,7 @@ void sMidZone(char num){
             //  if(i != 0 && i != size-1){
                 //printf(" ");
               // }else{
-                printf("| |\t");
+                printf("| |");
               }
           }else if (num == '2' || num == '3') {
             for (int i = 0; i < (size); i++) {
@@ -54,17 +54,17 @@ void sMidZone(char num){
               // if(i != (size-1)){
               //     printf("|\n");
               //   // }else{
-                printf(" _|\t");
+                printf(" _|");
               //   // }
               // }
             }
           }else if (num == '5' || num == '6' ) {
-            printf("|_\t");
+            printf("|_ ");
           }else if (num == '4' || num == '8' || num == '9') {
-            printf("|_|\t");
+            printf("|_|");
           }else{
             for (int i = 0; i < size; i++) {
-              printf(" __\t");
+              printf(" __");
             }
           }
 
@@ -75,19 +75,19 @@ void sMidZone(char num){
   // printf("B %d  ", num );
       for (int i = 0; i < size; i++) {
           if (num == '1' ){
-              printf("  |\t");
+              printf("  |");
             }else if (num == '4' || num == '7') {
-              printf("  |\t");
+              printf("  |");
             }else if (num == '0' || num == '6' || num == '8' ) {
-              printf("|_|\t");
+              printf("|_|");
             }else if (num == '3' || num == '5' || num == '9') {
-              printf(" _|\t");
+              printf(" _|");
             }else if (num == '2') {
-              printf("|_ \t");
+              printf("|_ ");
 
         }else{
           for (int i = 0; i < size; i++) {
-            printf("   \t");
+            printf("   ");
           }
         }
       }
@@ -99,7 +99,10 @@ void aTopZone(char *wnum, int len){
   //then print /n
   for (int i = 0; i < len; i++) {
     //printf("%c\n", (int)wnum[i] );
-    sTopZone(wnum [i]);
+    for (int j = 0; j < size; j++) {
+      sTopZone(wnum [i]);
+      printf(" ");
+    }
   }
   printf("\n");
 
@@ -110,7 +113,11 @@ void aMidZone(char *wnum, int len){
   //then print /n
   for (int i = 0; i < len; i++) {
   //  printf("%d\n",wnum[i] );
+  for (int j = 0; j < size; j++) {
     sMidZone(wnum [i]);
+    printf(" ");
+  }
+
   }
   printf("\n");
 }
@@ -121,7 +128,11 @@ void aBotZone(char *wnum, int len){
   //printf("%d\n",sizeof(wnum));
   for (int i = 0; i < len; i++) {
   //  printf("%d\n",wnum[i] );
+  for (int j = 0; j < size; j++) {
     sBotZone(wnum [i]);
+    printf(" ");
+  }
+
   }
   printf("\n");
 }
