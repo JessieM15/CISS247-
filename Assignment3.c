@@ -99,10 +99,10 @@ void aTopZone(char *wnum, int len){
   //then print /n
   for (int i = 0; i < len; i++) {
     //printf("%c\n", (int)wnum[i] );
-    //for (int j = 0; j < size; j++) {
+    for (int j = 0; j < size; j++) {
       sTopZone(wnum [i]);
       printf(" ");
-    //}
+    }
   }
   printf("\n");
 
@@ -185,4 +185,3 @@ int main(int argc, char *argv[]) {
 
   return 0;
 }
-
