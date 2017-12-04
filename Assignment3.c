@@ -136,6 +136,16 @@ void aBotZone(char *wnum, int len){
   }
   printf("\n");
 }
+void numCheck(char numC){
+  if ((numC == '0') || (numC == '1')||(numC == '2')||(numC == '3')||(numC == '4') ||
+        (numC == '5')||(numC == '6')||(numC == '7')||(numC == '8')||(numC == '9')||
+        (numC == '-')){
+
+  }else{
+    printf("Number needs to be between 0-9 and the '-'\n");
+    exit(EXIT_FAILURE);
+  }
+}
 void calcsize(char *scale){
   if (scale[0] == '1' ) {
     size = 1;
@@ -174,6 +184,7 @@ int main(int argc, char *argv[]) {
   char temp[4];
   strcpy(wnum, argv[1]);
   while (wnum[len] != '\0') {
+    numCheck(wnum[len]);
     //length function
     //printf("len %d \n", len);
     len++; //length
