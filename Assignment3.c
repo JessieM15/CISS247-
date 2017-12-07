@@ -102,13 +102,14 @@ void aBotZone(char *wnum, int len){
   }
   printf("\n");
 }
-void numCheck(char numC){
-  if ((numC == '0') || (numC == '1')||(numC == '2')||(numC == '3')||(numC == '4') ||
-  (numC == '5')||(numC == '6')||(numC == '7')||(numC == '8')||(numC == '9')||
-  (numC == '-')){
+void numCheck(char numC, int len){
+  if ( ((numC == '-') && (len == 0)) || (isdigit(numC))) {
+    /* code */
+  }
+//  if (isdigit(numC)){
 
-  }else{
-    printf("Number needs to be between 0-9 and the '-'\n");
+else{
+    printf("Number needs to be between 0-9 and the '-' sign can only be the first character \n");
     exit(EXIT_FAILURE);
   }
 }
@@ -144,7 +145,7 @@ int main(int argc, char *argv[]) {
   char wnum [80];
   strcpy(wnum, argv[1]);
   while (wnum[len] != '\0') {
-    numCheck(wnum[len]);
+    numCheck(wnum[len],len);
     //length function
     len++; //length
   }
